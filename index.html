@@ -7,6 +7,86 @@
     <title>Hangman</title>
 </head>
 <body>
+    <h1>Hangman</h1>
+
+    <span class="guessesLeft">Guesses left:</span>
+    <span class="guessCount"></span>
+
+    <section class="guessWord">
+
+    </section>
+
+    <form class="pickLetter">
+        <span>Choose a letter to guess:</span>
+        <select name="pickALetter">
+            <option value="a">A</option>
+            <option value="b">B </option>
+            <option value="c">C</option>
+            <option value="d">D</option>
+            <option value="e">E</option>
+            <option value="f">F</option>
+            <option value="g">G</option>
+            <option value="h">H</option>
+            <option value="i">I</option>
+            <option value="j">J</option>
+            <option value="k">K</option>
+            <option value="l">L</option>
+            <option value="m">M</option>
+            <option value="n">N</option>
+            <option value="o">O</option>
+            <option value="p">P</option>
+            <option value="q">Q</option>
+            <option value="r">R</option>
+            <option value="s">S</option>
+            <option value="t">T</option>
+            <option value="u">U</option>
+            <option value="v">V</option>
+            <option value="W">W</option>
+            <option value="x">X</option>
+            <option value="y">Y</option>
+            <option value="z">Z</option>
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- JAVA LANDDDD -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        // Initializing the hangMan object
+        const hangMan = {};
+        hangMan.wordArray = ['testing', 'hackeryou'];
+        hangMan.charArray = [];
+
+        // =================================================================== //
+        // ==        Name: Setup                                            == //
+        // =================================================================== //
+        // == Description: Randomly selects word from predetermined array   == //
+        // ==              and populate dynamic DIVs on page.               == //
+        // =================================================================== //
+        hangMan.setup = function() {
+            const wordIndex = Math.floor( Math.random() * this.wordArray.length );
+            this.charArray = this.wordArray[wordIndex].split('');
+            
+            for (let i = 0; i < this.charArray.length; i++) {
+                $('section.guessWord').append(`<div class="${this.charArray[i]}">${this.charArray[i]}</div>`);
+            }
+        };
+
+        // =================================================================== //
+        // ==        Name: Init                                             == //
+        // =================================================================== //
+        // == Description: Randomly selects word from predetermined array   == //
+        // ==              and populate dynamic DIVs on page.               == //
+        // =================================================================== //
+        hangMan.init = function() {
+
+        };
     
+        // When the document is ready, let's run the app
+        $(document).ready(function(){
+            hangMan.setup();
+            hangMan.init();
+        });
+    </script>
 </body>
 </html>
