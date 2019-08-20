@@ -1,0 +1,41 @@
+// ====================
+// Hangman Pseudo Code
+// ====================
+Assumptions:
+- User has 10 guesses
+- Vanna to set word length range
+- Div CSS styles already in place to show or hide for .guessChars
+- Drop down menu for A-Z so user can pick a letter to guess
+- Submit guess button beside drop down letter menu
+- Array of 5 words is present
+
+- On page refresh
+    - generate randoNum
+    - convert wordArray[randoNum] to charArray
+        wordArray[2]= burger
+        charArray = [b,u,r...]
+    - generate enough divs.hideLetter that equals to charArray.length
+- On submit button click
+    - prevent default action
+    - check that a letter is selected
+    - if guessCnt > 0
+        - if letter is selected
+            - guessCnt--;
+            - grey out/disable that letter from drop-down menu
+            - for loop charArray.length
+                - if userLetter === charArray[i]
+                    - letterCorrect++;
+                    - addClass(showLetter) to that div
+                    - if letterCorrect === charArray.length
+                        - output text "YOU WIN"
+                        - --> Stretch: display playAgain button (which refreshes page)
+                        - break;
+            - if letterCorrect < charArray.length && guessCnt === 0
+                - display answer
+                - "YOU LOSE"
+                - --> Stretch: display playAgain button (which refreshes page)
+        - else, "you need to pick a letter!"
+    
+
+
+    
