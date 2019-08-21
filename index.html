@@ -98,14 +98,10 @@
                 // Check that a valid letter was selected
                 const selectedValue = $('select')[0].value;
                 console.log(selectedValue);
-                // const selectedClass = `.${selectedValue}`;
                 if (selectedValue == 'pleaseSelect') {
                     alert("Please select a letter!");
                 } else {
                     if (guessCnt > 0) {
-                        guessCnt--;
-                        $('span.guessCount').text(guessCnt);
-                        console.log(`Guesses left: ${guessCnt}`);
                         
                         // disable the letter that was just guessed
                         $(`option[value=${selectedValue}]`).attr('disabled', 'disabled');
@@ -134,6 +130,10 @@
 
                         // TODO: generate an array of strings and randomly display
                         if (letterCorrect === 0) {
+                            guessCnt--;
+                            $('span.guessCount').text(guessCnt);
+                            console.log(`Guesses left: ${guessCnt}`);
+                            
                             $('p').text(`Better luck next time, there are no ${selectedValue.toUpperCase()}'s here.`);
                         } else {
                             $('p').text(`Nice work! There are ${letterCorrect} ${selectedValue.toUpperCase()}'s in the word.`);
