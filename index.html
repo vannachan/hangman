@@ -11,8 +11,8 @@
 <body>
     <h1>Hangman</h1>
 
-    <span class="guessesLeft">Guesses left:</span>
-    <span class="guessCount"></span>
+    <span class="guessesLeft">Wrong guesses left:</span>
+    <span class="guessCount">10</span>
 
     <section class="guessWord">
 
@@ -61,7 +61,7 @@
     <script>
         // Initializing the hangMan object
         const hangMan = {};
-        hangMan.wordArray = ['test', 'vannath'];
+        hangMan.wordArray = ['poopypants', 'vannaisdumb'];
         hangMan.charArray = [];
 
         // =================================================================== //
@@ -104,6 +104,7 @@
                 } else {
                     if (guessCnt > 0) {
                         guessCnt--;
+                        $('span.guessCount').text(guessCnt);
                         console.log(`Guesses left: ${guessCnt}`);
                         
                         // disable the letter that was just guessed
@@ -115,7 +116,8 @@
                                 totalLetterCorrect++;
                                 letterCorrect++;
                                 console.log(`Letters correct: ${letterCorrect}`);
-                                $(`span.${selectedValue}`).toggleClass('hideLetter showLetter');
+                                $(`span.${selectedValue}`).removeClass('hideLetter');
+                                $(`span.${selectedValue}`).addClass('showLetter');
 
                                 if (totalLetterCorrect === hangMan.charArray.length) {
                                     $('h2').text("YOU WIN!!!");
