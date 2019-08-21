@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="styles/style.css">
     <title>Hangman</title>
 </head>
 <body>
@@ -17,69 +19,136 @@
     </section>
 
     <form class="pickLetter">
-        <span>Choose a letter to guess:</span>
-        <select name="pickALetter">
-            <option value="a">A</option>
-            <option value="b">B </option>
-            <option value="c">C</option>
-            <option value="d">D</option>
-            <option value="e">E</option>
-            <option value="f">F</option>
-            <option value="g">G</option>
-            <option value="h">H</option>
-            <option value="i">I</option>
-            <option value="j">J</option>
-            <option value="k">K</option>
-            <option value="l">L</option>
-            <option value="m">M</option>
-            <option value="n">N</option>
-            <option value="o">O</option>
-            <option value="p">P</option>
-            <option value="q">Q</option>
-            <option value="r">R</option>
-            <option value="s">S</option>
-            <option value="t">T</option>
-            <option value="u">U</option>
-            <option value="v">V</option>
-            <option value="W">W</option>
-            <option value="x">X</option>
-            <option value="y">Y</option>
-            <option value="z">Z</option>
+        <label class="letterLabel" for="pickALetter">Choose a letter to guess:</label>
+        <select id="pickALetter" name="pickALetter">
+            <option class="pleaseSelect" value="pleaseSelect">-- Select a letter --</option>
+            <option class="a" value="a">A</option>
+            <option class="b" value="b">B </option>
+            <option class="c" value="c">C</option>
+            <option class="d" value="d">D</option>
+            <option class="e" value="e">E</option>
+            <option class="f" value="f">F</option>
+            <option class="g" value="g">G</option>
+            <option class="h" value="h">H</option>
+            <option class="i" value="i">I</option>
+            <option class="j" value="j">J</option>
+            <option class="k" value="k">K</option>
+            <option class="l" value="l">L</option>
+            <option class="m" value="m">M</option>
+            <option class="n" value="n">N</option>
+            <option class="o" value="o">O</option>
+            <option class="p" value="p">P</option>
+            <option class="q" value="q">Q</option>
+            <option class="r" value="r">R</option>
+            <option class="s" value="s">S</option>
+            <option class="t" value="t">T</option>
+            <option class="u" value="u">U</option>
+            <option class="v" value="v">V</option>
+            <option class="w" value="W">W</option>
+            <option class="x" value="x">X</option>
+            <option class="y" value="y">Y</option>
+            <option class="z" value="z">Z</option>
         </select>
         <input type="submit" value="Submit">
     </form>
+
+    <p></p>
+
+    <h2></h2>
 
     <!-- JAVA LANDDDD -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         // Initializing the hangMan object
         const hangMan = {};
-        hangMan.wordArray = ['testing', 'hackeryou'];
+        hangMan.wordArray = ['test', 'vannath'];
         hangMan.charArray = [];
 
         // =================================================================== //
-        // ==        Name: Setup                                            == //
+        // == Function Name: Setup                                          == //
         // =================================================================== //
-        // == Description: Randomly selects word from predetermined array   == //
-        // ==              and populate dynamic DIVs on page.               == //
+        // ==   Description: Randomly selects word from predetermined array == //
+        // ==                and populate dynamic DIVs on page.             == //
         // =================================================================== //
         hangMan.setup = function() {
             const wordIndex = Math.floor( Math.random() * this.wordArray.length );
             this.charArray = this.wordArray[wordIndex].split('');
-            
+
             for (let i = 0; i < this.charArray.length; i++) {
-                $('section.guessWord').append(`<div class="${this.charArray[i]}">${this.charArray[i]}</div>`);
+                $('section.guessWord').append(`<div class="letterContainer"><span class="${this.charArray[i]} guessLetter hideLetter">${this.charArray[i]}</span></div>`);
             }
         };
 
+
+        
         // =================================================================== //
-        // ==        Name: Init                                             == //
+        // == Function Name: Init                                           == //
         // =================================================================== //
-        // == Description: Randomly selects word from predetermined array   == //
-        // ==              and populate dynamic DIVs on page.               == //
+        // ==   Description: Randomly selects word from predetermined array == //
+        // ==                and populate dynamic DIVs on page.             == //
         // =================================================================== //
         hangMan.init = function() {
+            let guessCnt = 10;
+            let totalLetterCorrect = 0;
 
+            // - On submit button click
+            $('input[type=submit]').on('click', function(event){
+                event.preventDefault();
+
+                // Check that a valid letter was selected
+                const selectedValue = $('select')[0].value;
+                console.log(selectedValue);
+                // const selectedClass = `.${selectedValue}`;
+                if (selectedValue == 'pleaseSelect') {
+                    alert("Please select a letter!");
+                } else {
+                    if (guessCnt > 0) {
+                        guessCnt--;
+                        console.log(`Guesses left: ${guessCnt}`);
+                        
+                        // disable the letter that was just guessed
+                        $(`option[value=${selectedValue}]`).attr('disabled', 'disabled');
+
+                        let letterCorrect = 0;
+                        for (let i = 0; i < hangMan.charArray.length; i++) {
+                            if (selectedValue === hangMan.charArray[i]) {
+                                totalLetterCorrect++;
+                                letterCorrect++;
+                                console.log(`Letters correct: ${letterCorrect}`);
+                                $(`span.${selectedValue}`).toggleClass('hideLetter showLetter');
+
+                                if (totalLetterCorrect === hangMan.charArray.length) {
+                                    $('h2').text("YOU WIN!!!");
+
+                                    // User already won, so disable guessing capabilities
+                                    $('select').attr('disabled', 'disabled');
+                                    $('input[type=submit]').attr('disabled', 'disabled');
+
+                                    // TODO: (Stretch) display PlayAgain button 
+                                    break;
+                                }
+                            }
+                        }
+
+                        // TODO: generate an array of strings and randomly display
+                        if (letterCorrect === 0) {
+                            $('p').text(`Better luck next time, there are no ${selectedValue.toUpperCase()}'s here.`);
+                        } else {
+                            $('p').text(`Nice work! There are ${letterCorrect} ${selectedValue.toUpperCase()}'s in the word.`);
+                        }
+
+                        // finished searching through the character array
+                        if (totalLetterCorrect < hangMan.charArray.length && guessCnt === 0) {
+                            $('span.guessLetter').removeClass('hideLetter');
+                            $('span.guessLetter').addClass('showLetter');
+                            $('select').attr('disabled', 'disabled');
+                            $('input[type=submit]').attr('disabled', 'disabled');
+                            $('h2').text("YOU LOSEEEeeEEeEEE!!!");
+                            // TODO: (Stretch) display PlayAgain button 
+                        }
+                    }
+                }
+            })
         };
     
         // When the document is ready, let's run the app
