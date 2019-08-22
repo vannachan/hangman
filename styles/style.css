@@ -280,6 +280,7 @@ h2 {
 }
 
 body {
+  height: 100vh;
   background: #eeebd3;
 }
 
@@ -319,7 +320,7 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 5% 0;
+  padding: 5% 0 2% 0;
   margin: 0 auto;
 }
 
@@ -346,4 +347,24 @@ h2 {
 .showLetter {
   visibility: visible;
   text-align: center;
+}
+
+.keyboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.keyboard button {
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 3px black;
+          box-shadow: 3px 3px black;
 }
