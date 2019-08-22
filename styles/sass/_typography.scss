@@ -1,0 +1,53 @@
+html {
+    font-size: 62.5%; // sets base size to 10px
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+.guessContainer,
+.playAgain,
+.showLetter {
+    font-family: $baseFont;
+    color: white;
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+h1 {
+    font-family: $baseFont;
+    font-size: 10rem;
+    text-transform: uppercase;
+    -webkit-text-stroke: 1px black;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+h2 {
+    font-size: 4rem;
+    letter-spacing: 2px;
+}
+
+.guessContainer,
+.playAgain {
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: #f7c548;
+}
+
+.guessLetter {
+    text-transform: uppercase;
+    font-size: 5rem;
+    color: #f7c548;
+}
