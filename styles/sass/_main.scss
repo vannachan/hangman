@@ -83,4 +83,17 @@ h2 {
         border-radius: 10px;
         box-shadow: 3px 3px black;
     }
+
+    .incorrect {
+        background: grey;
+    }
+    
+    .correct {
+        background: lightgreen;
+    }
+
+}
+
+.hideKeyboard {
+    display: none;
 }
