@@ -145,12 +145,28 @@
         // TODO: populate more words or look into API to generate words.
         hangMan.wordArray = ['receipt', 'sunscreen', 'basketball', 'violin', 'toronto', 'hackeryou', 'lightbulb', 'iceskating', 'keyboard'];
         hangMan.charArray = [];
+        hangMan.guessCnt = 10;
+        hangMan.totalLetterCorrect = 0;
 
         // =================================================================== //
-        // == Function Name: Setup                                          == //
+        // == Function Name: init()                                         == //
         // =================================================================== //
         // ==   Description: Randomly selects word from predetermined array == //
         // ==                and populate dynamic DIVs on page.             == //
+        // =================================================================== //
+        hangMan.init = function() {
+            console.log("WE IN THE INIT FUNCTION");
+            hangMan.setup();
+            hangMan.playGame();
+            hangMan.playAgain();
+        };
+
+        // =================================================================== //
+        // == Function Name: setup()                                        == //
+        // =================================================================== //
+        // ==   Description: Randomly selects word from predetermined array == //
+        // ==                and populate dynamic HTML on page, setting up  == //
+        // ==                global variables.                              == //
         // =================================================================== //
         hangMan.setup = function() {
             const wordIndex = Math.floor( Math.random() * this.wordArray.length );
@@ -159,127 +175,160 @@
             for (let i = 0; i < this.charArray.length; i++) {
                 $('section.guessWord').append(`<div class="letterContainer"><span class="${this.charArray[i]} guessLetter hideLetter">${this.charArray[i]}</span></div>`);
             }
+
+            hangMan.resetCounters();
+            $('span.guessCount').text(hangMan.guessCnt);
+        };
+        
+        // =================================================================== //
+        // == Function Name: resetCounters()                                == //
+        // =================================================================== //
+        // ==   Description: Reset counters for a fresh game.               == //
+        // =================================================================== //
+        hangMan.resetCounters = function() {
+            hangMan.guessCnt = 10;
+            hangMan.totalLetterCorrect = 0;
         };
 
         // =================================================================== //
-        // == Function Name: Init                                           == //
+        // == Function Name: winGame()                                      == //
         // =================================================================== //
-        // ==   Description: Randomly selects word from predetermined array == //
-        // ==                and populate dynamic DIVs on page.             == //
+        // ==   Description: Output winner text and reset counters for      == // 
+        // ==                  the next game!                               == //
         // =================================================================== //
-        hangMan.init = function() {
-            console.log("WE IN THE INIT FUNCTION");
-            let guessCnt = 5;
-            $('span.guessCount').text(guessCnt);
+        hangMan.winGame = function() {
+            $('h3').text("YOU WIN!!!");
+            $('h3').addClass('addPadding');
+            // User already won, so disable guessing capabilities
+            $('.keyboard').addClass('hideKeyboard');
+            
+            hangMan.resetCounters();
+        };
+
+        // =================================================================== //
+        // == Function Name: loseGame()                                     == //
+        // =================================================================== //
+        // ==   Description: Output loser text and reset counters for       == // 
+        // ==                  the next game!                               == //
+        // =================================================================== //
+        hangMan.loseGame = function() {
+            $('span.guessLetter').removeClass('hideLetter');
+            $('span.guessLetter').addClass('showLetter');
+            $('.keyboard').addClass('hideKeyboard');
+            $('h3').text("YOU LOSEEEeeEEeEEE!!!");
+            $('h3').addClass('addPadding');
+            $('p').html('');
+
+            hangMan.resetCounters();
+        };
+
+         // =================================================================== //
+        // == Function Name: checkMatches()                                 == //
+        // =================================================================== //
+        // ==     Arguments: 1 - selectedLetter                             == //
+        // ==   Description: Checks how many letters in the array match     == //
+        // ==                  the selected letter                          == //
+        // =================================================================== //
+        hangMan.checkMatches = function(selectedLetter) {
+            let letterCorrect = 0;
+                
+            for (let i = 0; i < hangMan.charArray.length; i++) {
+                if (selectedLetter === hangMan.charArray[i]) {
+                    hangMan.totalLetterCorrect++;
+                    letterCorrect++;
+                    
+                    $(`span.${selectedLetter}`).removeClass('hideLetter');
+                    $(`span.${selectedLetter}`).addClass('showLetter');
+                    
+                    if (hangMan.totalLetterCorrect === hangMan.charArray.length) {
+                        hangMan.winGame();
+                    }
+                }
+            }
+
+            return letterCorrect;
+        };
+
+        // =================================================================== //
+        // == Function Name: playGame()                                     == //
+        // =================================================================== //
+        // ==   Description:                                                == //
+        // =================================================================== //
+        hangMan.playGame = function() {
+            
             $('span.guessCount').addClass('countZoom');
 
-            let totalLetterCorrect = 0;
-            console.log(totalLetterCorrect);
-
-            // - On letter button click
-            $('.letterButton').on('click', function(event){
-                event.preventDefault();
+            // A LETTER WAS CLICKED, WOOT WOOT!
+            $('.letterButton').on('click', function(){
                 $('span.guessCount').removeClass('countZoom');
 
-                // Trying to trigger animation reflow
+                // FIXME: Trying to trigger animation reflow
                 $('span.guessCount').offsetWidth;
                 $('span.guessCount').offsetheight;
 
-                // Check that a valid letter was selected
+                // Save the letter and disable the button
                 const selectedValue = $(this).attr('value');
-                console.log(selectedValue);
+                $(this).attr('disabled', 'disabled');
             
-                if (guessCnt > 0) {
-                    
-                    // disable the letter that was just guessed
-                    $(this).attr('disabled', 'disabled');
+                // OKAY, WE GOT GUESSES LEFT, PROCEED!
+                if (hangMan.guessCnt > 0) {
+ 
+                    // CHECK IF WE GOT ANYTHING RIGHT!
+                    const letterCorrect = hangMan.checkMatches(selectedValue);
 
-                    let letterCorrect = 0;
-                    for (let i = 0; i < hangMan.charArray.length; i++) {
-                        if (selectedValue === hangMan.charArray[i]) {
-                            totalLetterCorrect++;
-                            letterCorrect++;
-                            console.log("Total correct:",totalLetterCorrect);
-                            console.log(`Letters correct: ${letterCorrect}`);
-
-                            $(`span.${selectedValue}`).removeClass('hideLetter');
-                            $(`span.${selectedValue}`).addClass('showLetter');
-
-                            if (totalLetterCorrect === hangMan.charArray.length) {
-                                $('h3').text("YOU WIN!!!");
-                                $('h3').addClass('addPadding');
-                                // User already won, so disable guessing capabilities
-                                $('.keyboard').addClass('hideKeyboard');
-                                return;
-                            }
-                        }
-                    }
-
-                    // Letter guessed didn't match with anything
                     if (letterCorrect === 0) {
-                        guessCnt--;
-                        
+                        hangMan.guessCnt--;
                         $(this).addClass('incorrect');
                         
-                        $('span.guessCount').text(guessCnt);
+                        $('span.guessCount').text(hangMan.guessCnt);
                         $('span.guessCount').addClass('countZoom');
-                        console.log(`Guesses left: ${guessCnt}`);
+                        console.log(`Guesses left: ${hangMan.guessCnt}`);
 
-                        if (guessCnt === 1) {
+                        if (hangMan.guessCnt === 1) {
                             $('p').text(`Uh oh, looks like you only have 1 guess left!`);
                         }
                     } else {
                         $(this).addClass('correct');
                     }
 
-                    // finished searching through the character array and no guesses left
-                    if (totalLetterCorrect < hangMan.charArray.length && guessCnt === 0) {
-                        $('span.guessLetter').removeClass('hideLetter');
-                        $('span.guessLetter').addClass('showLetter');
-                        $('.keyboard').addClass('hideKeyboard');
-                        $('h3').text("YOU LOSEEEeeEEeEEE!!!");
-                        $('h3').addClass('addPadding');
-                        $('p').html('');
-
-                        return;
+                    // Finished searching through the character array and no guesses left
+                    if (hangMan.totalLetterCorrect < hangMan.charArray.length && hangMan.guessCnt === 0) {
+                        hangMan.loseGame();
                     }
                 }
             })
         };
 
         // =================================================================== //
-        // == Function Name: Reload                                         == //
+        // == Function Name: playAgain()                                    == //
         // =================================================================== //
         // ==   Description: Clean up HTML and repopulate the page for a    == //
         // ==                new game of hangman!                           == //
         // =================================================================== //
-        hangMan.reload = function() {
-            // Clean up all the stuff we disabled and changed in the HTML
-            $('section.guessWord').html('');
-            $('.letterButton').removeAttr('disabled');
-            $('.letterButton').removeClass('incorrect');
-            $('.letterButton').removeClass('correct');
-            $('.keyboard').removeClass('hideKeyboard');
-            $('h3').html('');
-            $('h3').removeClass('addPadding');
-            $('p').html('');
-
-            // Now repopulate and set it up as a new game
-            hangMan.setup();
-            hangMan.init();
-        }
-
-        // When the document is ready, let's run the app
-        $(document).ready(function(){
-            hangMan.setup();
-            hangMan.init();
-
-            // If PlayAgain button is pressed, reload everrrything!
-            // FIXME: this is instantiating multiple init() functions
+        hangMan.playAgain = function() {
             $('.playAgain').on('click', function(){
-                hangMan.reload();
+                // Clean up all the stuff we disabled and changed in the HTML
+                $('section.guessWord').html('');
+                $('.letterButton').removeAttr('disabled');
+                $('.letterButton').removeClass('incorrect');
+                $('.letterButton').removeClass('correct');
+                $('.keyboard').removeClass('hideKeyboard');
+                $('h3').html('');
+                $('h3').removeClass('addPadding');
+                $('p').html('');
+
+                // Now repopulate and set it up as a new game
+                hangMan.setup();
             })
+        };
+        
+        // =================================================================== //
+        // ======================== DOCUMENT IS READY ======================== //
+        // =================================================================== //
+        $(document).ready(function(){
+            hangMan.init();
         });
+
     </script>
 </body>
 </html>
