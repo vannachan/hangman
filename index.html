@@ -32,109 +32,48 @@
     </div>
     
     <button class="playAgain">Play again</button>
+
+    <!-- Dynamically generated content via Javascript -->
     <section class="guessWord">
     </section>
-
     <h3></h3>
     <p></p>
 
-    <!-- <form class="pickLetter">
-        <label class="letterLabel" for="pickALetter">Choose a letter to guess:</label>
-        <select id="pickALetter" name="pickALetter">
-            <option class="pleaseSelect" value="pleaseSelect">-- Select a letter --</option>
-            <option class="a" value="a">A</option>
-            <option class="b" value="b">B </option>
-            <option class="c" value="c">C</option>
-            <option class="d" value="d">D</option>
-            <option class="e" value="e">E</option>
-            <option class="f" value="f">F</option>
-            <option class="g" value="g">G</option>
-            <option class="h" value="h">H</option>
-            <option class="i" value="i">I</option>
-            <option class="j" value="j">J</option>
-            <option class="k" value="k">K</option>
-            <option class="l" value="l">L</option>
-            <option class="m" value="m">M</option>
-            <option class="n" value="n">N</option>
-            <option class="o" value="o">O</option>
-            <option class="p" value="p">P</option>
-            <option class="q" value="q">Q</option>
-            <option class="r" value="r">R</option>
-            <option class="s" value="s">S</option>
-            <option class="t" value="t">T</option>
-            <option class="u" value="u">U</option>
-            <option class="v" value="v">V</option>
-            <option class="w" value="W">W</option>
-            <option class="x" value="x">X</option>
-            <option class="y" value="y">Y</option>
-            <option class="z" value="z">Z</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form> -->
-
-        <!-- Normal Alphabetical Format -->
-        <!-- <button class="a letterButton" value="a">A</button>
-        <button class="b letterButton" value="b">B </button>
-        <button class="c letterButton" value="c">C</button>
-        <button class="d letterButton" value="d">D</button>
+    <!-- Qwerty Format -->
+    <div class="keyboard rowOne">
+        <button class="q letterButton" value="q">Q</button>
+        <button class="w letterButton" value="W">W</button>
         <button class="e letterButton" value="e">E</button>
+        <button class="r letterButton" value="r">R</button>
+        <button class="t letterButton" value="t">T</button>
+        <button class="y letterButton" value="y">Y</button>
+        <button class="u letterButton" value="u">U</button>
+        <button class="i letterButton" value="i">I</button>
+        <button class="o letterButton" value="o">O</button>
+        <button class="p letterButton" value="p">P</button>
+    </div>
+
+    <div class="keyboard rowTwo">
+        <button class="a letterButton" value="a">A</button>
+        <button class="s letterButton" value="s">S</button>
+        <button class="d letterButton" value="d">D</button>
         <button class="f letterButton" value="f">F</button>
         <button class="g letterButton" value="g">G</button>
         <button class="h letterButton" value="h">H</button>
-        <button class="i letterButton" value="i">I</button>
         <button class="j letterButton" value="j">J</button>
         <button class="k letterButton" value="k">K</button>
         <button class="l letterButton" value="l">L</button>
-        <button class="m letterButton" value="m">M</button>
-        <button class="n letterButton" value="n">N</button>
-        <button class="o letterButton" value="o">O</button>
-        <button class="p letterButton" value="p">P</button>
-        <button class="q letterButton" value="q">Q</button>
-        <button class="r letterButton" value="r">R</button>
-        <button class="s letterButton" value="s">S</button>
-        <button class="t letterButton" value="t">T</button>
-        <button class="u letterButton" value="u">U</button>
-        <button class="v letterButton" value="v">V</button>
-        <button class="w letterButton" value="W">W</button>
+    </div>
+
+    <div class="keyboard rowThree">
+        <button class="z letterButton" value="z">Z</button>
         <button class="x letterButton" value="x">X</button>
-        <button class="y letterButton" value="y">Y</button>
-        <button class="z letterButton" value="z">Z</button> -->
-
-        <!-- Qwerty Format -->
-        <div class="keyboard rowOne">
-            <button class="q letterButton" value="q">Q</button>
-            <button class="w letterButton" value="W">W</button>
-            <button class="e letterButton" value="e">E</button>
-            <button class="r letterButton" value="r">R</button>
-            <button class="t letterButton" value="t">T</button>
-            <button class="y letterButton" value="y">Y</button>
-            <button class="u letterButton" value="u">U</button>
-            <button class="i letterButton" value="i">I</button>
-            <button class="o letterButton" value="o">O</button>
-            <button class="p letterButton" value="p">P</button>
-        </div>
-
-        <div class="keyboard rowTwo">
-            <button class="a letterButton" value="a">A</button>
-            <button class="s letterButton" value="s">S</button>
-            <button class="d letterButton" value="d">D</button>
-            <button class="f letterButton" value="f">F</button>
-            <button class="g letterButton" value="g">G</button>
-            <button class="h letterButton" value="h">H</button>
-            <button class="j letterButton" value="j">J</button>
-            <button class="k letterButton" value="k">K</button>
-            <button class="l letterButton" value="l">L</button>
-        </div>
-
-        <div class="keyboard rowThree">
-            <button class="z letterButton" value="z">Z</button>
-            <button class="x letterButton" value="x">X</button>
-            <button class="c letterButton" value="c">C</button>
-            <button class="v letterButton" value="v">V</button>
-            <button class="b letterButton" value="b">B</button>
-            <button class="n letterButton" value="n">N</button>
-            <button class="m letterButton" value="m">M</button>
-        </div>
+        <button class="c letterButton" value="c">C</button>
+        <button class="v letterButton" value="v">V</button>
+        <button class="b letterButton" value="b">B</button>
+        <button class="n letterButton" value="n">N</button>
+        <button class="m letterButton" value="m">M</button>
+    </div>
 
 
     <!-- JAVA LANDDDD -->
@@ -252,19 +191,14 @@
         // =================================================================== //
         // == Function Name: playGame()                                     == //
         // =================================================================== //
-        // ==   Description:                                                == //
+        // ==   Description: Let's play the game, shall we?                 == //
         // =================================================================== //
         hangMan.playGame = function() {
-            
-            $('span.guessCount').addClass('countZoom');
 
             // A LETTER WAS CLICKED, WOOT WOOT!
             $('.letterButton').on('click', function(){
-                $('span.guessCount').removeClass('countZoom');
-
-                // FIXME: Trying to trigger animation reflow
-                $('span.guessCount').offsetWidth;
-                $('span.guessCount').offsetheight;
+                $('span').remove('.guessCount');
+                $('.guessContainer').append(`<span class='guessCount'></span>`);
 
                 // Save the letter and disable the button
                 const selectedValue = $(this).attr('value');
@@ -287,7 +221,10 @@
                         if (hangMan.guessCnt === 1) {
                             $('p').text(`Uh oh, looks like you only have 1 guess left!`);
                         }
+
                     } else {
+                        $('span.guessCount').text(hangMan.guessCnt);
+                        $('span.guessCount').removeClass('countZoom');
                         $(this).addClass('correct');
                     }
 
