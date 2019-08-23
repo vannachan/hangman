@@ -21,6 +21,8 @@
     <title>Hangman</title>
 </head>
 <body>
+
+    <!-- TODO: fix the navigation pane -->
     <h1>Hangman</h1>
     <h2>Pick a letter and guess the word!</h2>
     
@@ -140,6 +142,7 @@
     <script>
         // Initializing the hangMan object
         const hangMan = {};
+        // TODO: populate more words or look into API to generate words.
         hangMan.wordArray = ['receipt', 'sunscreen', 'basketball', 'violin', 'toronto', 'hackeryou', 'lightbulb', 'iceskating', 'keyboard'];
         hangMan.charArray = [];
 
@@ -165,8 +168,10 @@
         // ==                and populate dynamic DIVs on page.             == //
         // =================================================================== //
         hangMan.init = function() {
-            let guessCnt = 10;
+            console.log("WE IN THE INIT FUNCTION");
+            let guessCnt = 5;
             $('span.guessCount').text(guessCnt);
+            $('span.guessCount').addClass('countZoom');
 
             let totalLetterCorrect = 0;
             console.log(totalLetterCorrect);
@@ -174,65 +179,71 @@
             // - On letter button click
             $('.letterButton').on('click', function(event){
                 event.preventDefault();
+                $('span.guessCount').removeClass('countZoom');
+
+                // Trying to trigger animation reflow
+                $('span.guessCount').offsetWidth;
+                $('span.guessCount').offsetheight;
 
                 // Check that a valid letter was selected
                 const selectedValue = $(this).attr('value');
                 console.log(selectedValue);
-                // if (selectedValue == 'pleaseSelect') {
-                //     alert("Please select a letter!");
-                // } else {
-                    if (guessCnt > 0) {
-                        
-                        // disable the letter that was just guessed
-                        $(this).attr('disabled', 'disabled');
+            
+                if (guessCnt > 0) {
+                    
+                    // disable the letter that was just guessed
+                    $(this).attr('disabled', 'disabled');
 
-                        let letterCorrect = 0;
-                        for (let i = 0; i < hangMan.charArray.length; i++) {
-                            if (selectedValue === hangMan.charArray[i]) {
-                                totalLetterCorrect++;
-                                letterCorrect++;
-                                console.log("Total correct:",totalLetterCorrect);
-                                console.log(`Letters correct: ${letterCorrect}`);
+                    let letterCorrect = 0;
+                    for (let i = 0; i < hangMan.charArray.length; i++) {
+                        if (selectedValue === hangMan.charArray[i]) {
+                            totalLetterCorrect++;
+                            letterCorrect++;
+                            console.log("Total correct:",totalLetterCorrect);
+                            console.log(`Letters correct: ${letterCorrect}`);
 
-                                $(`span.${selectedValue}`).removeClass('hideLetter');
-                                $(`span.${selectedValue}`).addClass('showLetter');
+                            $(`span.${selectedValue}`).removeClass('hideLetter');
+                            $(`span.${selectedValue}`).addClass('showLetter');
 
-                                if (totalLetterCorrect === hangMan.charArray.length) {
-                                    $('h3').text("YOU WIN!!!");
-
-                                    // User already won, so disable guessing capabilities
-                                    // $('.letterButton').attr('disabled', 'disabled');
-                                    $('.keyboard').addClass('hideKeyboard');
-                                    break;
-                                }
+                            if (totalLetterCorrect === hangMan.charArray.length) {
+                                $('h3').text("YOU WIN!!!");
+                                $('h3').addClass('addPadding');
+                                // User already won, so disable guessing capabilities
+                                $('.keyboard').addClass('hideKeyboard');
+                                return;
                             }
                         }
-
-                        // TODO: generate an array of strings and randomly display
-                        if (letterCorrect === 0) {
-                            guessCnt--;
-
-                            $(this).addClass('incorrect');
-                            $('span.guessCount').text(guessCnt);
-                            console.log(`Guesses left: ${guessCnt}`);
-
-                            $('p').text(`Better luck next time, there are no ${selectedValue.toUpperCase()}'s here.`);
-                        } else {
-                            $(this).addClass('correct');
-                            $('p').text(`Nice work! There are ${letterCorrect} ${selectedValue.toUpperCase()}'s in the word.`);
-                        }
-
-                        // finished searching through the character array and no guesses left
-                        if (totalLetterCorrect < hangMan.charArray.length && guessCnt === 0) {
-                            $('span.guessLetter').removeClass('hideLetter');
-                            $('span.guessLetter').addClass('showLetter');
-                            $('.keyboard').addClass('hideKeyboard');
-                            // $('.letterButton').attr('disabled', 'disabled');
-                            // $('.letterButton').addClass('disabled');
-                            $('h3').text("YOU LOSEEEeeEEeEEE!!!");
-                        }
                     }
-                // }
+
+                    // Letter guessed didn't match with anything
+                    if (letterCorrect === 0) {
+                        guessCnt--;
+                        
+                        $(this).addClass('incorrect');
+                        
+                        $('span.guessCount').text(guessCnt);
+                        $('span.guessCount').addClass('countZoom');
+                        console.log(`Guesses left: ${guessCnt}`);
+
+                        if (guessCnt === 1) {
+                            $('p').text(`Uh oh, looks like you only have 1 guess left!`);
+                        }
+                    } else {
+                        $(this).addClass('correct');
+                    }
+
+                    // finished searching through the character array and no guesses left
+                    if (totalLetterCorrect < hangMan.charArray.length && guessCnt === 0) {
+                        $('span.guessLetter').removeClass('hideLetter');
+                        $('span.guessLetter').addClass('showLetter');
+                        $('.keyboard').addClass('hideKeyboard');
+                        $('h3').text("YOU LOSEEEeeEEeEEE!!!");
+                        $('h3').addClass('addPadding');
+                        $('p').html('');
+
+                        return;
+                    }
+                }
             })
         };
 
@@ -245,9 +256,13 @@
         hangMan.reload = function() {
             // Clean up all the stuff we disabled and changed in the HTML
             $('section.guessWord').html('');
-            $('select').removeAttr('disabled');
-            $('option').removeAttr('disabled');
-            $('input[type=submit]').removeAttr('disabled');
+            $('.letterButton').removeAttr('disabled');
+            $('.letterButton').removeClass('incorrect');
+            $('.letterButton').removeClass('correct');
+            $('.keyboard').removeClass('hideKeyboard');
+            $('h3').html('');
+            $('h3').removeClass('addPadding');
+            $('p').html('');
 
             // Now repopulate and set it up as a new game
             hangMan.setup();
