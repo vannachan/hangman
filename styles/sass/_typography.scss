@@ -9,6 +9,7 @@ body {
 h1,
 h2,
 h3,
+p,
 .guessContainer,
 .playAgain,
 .showLetter {
@@ -52,11 +53,16 @@ h3 {
 .playAgain {
     text-transform: uppercase;
     font-size: 4rem;
-    color: #f7c548;
+    color: $primaryAccent;
 }
 
 .guessLetter {
     text-transform: uppercase;
     font-size: 5rem;
-    color: #f7c548;
+    color: $primaryAccent;
+}
+
+p {
+    font-size: 3rem;
+    margin-top: 0;
 }

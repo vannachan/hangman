@@ -38,7 +38,6 @@
     </section>
     <h3></h3>
     <p></p>
-
     <!-- Qwerty Format -->
     <div class="keyboard rowOne">
         <button class="q letterButton" value="q">Q</button>
@@ -117,6 +116,7 @@
 
             hangMan.resetCounters();
             $('span.guessCount').text(hangMan.guessCnt);
+            $('p').html('placeholder');
         };
         
         // =================================================================== //
@@ -157,6 +157,7 @@
             $('h3').text("YOU LOSEEEeeEEeEEE!!!");
             $('h3').addClass('addPadding');
             $('p').html('');
+            $('p').removeClass('pAnimate');
 
             hangMan.resetCounters();
         };
@@ -219,7 +220,10 @@
                         console.log(`Guesses left: ${hangMan.guessCnt}`);
 
                         if (hangMan.guessCnt === 1) {
-                            $('p').text(`Uh oh, looks like you only have 1 guess left!`);
+                            $('p').remove();
+                            $('h3').after(`<p class="pAnimate">Uh oh, looks like you only have 1 guess left!</p>`);
+                            // $('p').text(`Uh oh, looks like you only have 1 guess left!`);
+                            // $('p').addClass('pAnimate');
                         }
 
                     } else {

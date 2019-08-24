@@ -246,6 +246,7 @@ body {
 h1,
 h2,
 h3,
+p,
 .guessContainer,
 .playAgain,
 .showLetter {
@@ -286,6 +287,11 @@ h3 {
   text-transform: uppercase;
   font-size: 5rem;
   color: #f7c548;
+}
+
+p {
+  font-size: 3rem;
+  margin-top: 0;
 }
 
 body {
@@ -403,6 +409,64 @@ h3 {
   text-align: center;
 }
 
+p {
+  visibility: hidden;
+}
+
+.pAnimate {
+  visibility: visible;
+  text-align: center;
+  -webkit-animation: pZoom 2.5s 1;
+          animation: pZoom 2.5s 1;
+  z-index: 10;
+}
+
+@-webkit-keyframes pZoom {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  50% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes pZoom {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  25% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  50% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+  }
+  75% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
 .keyboard {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -428,8 +492,8 @@ h3 {
   transition: all 0.3s;
 }
 
-.keyboard button:hover,
-.keyboard button:focus {
+.keyboard button:not(.correct):not(.incorrect):hover,
+.keyboard button:not(.correct):not(.incorrect):focus {
   outline: 0;
   top: 2px;
   left: 2px;
