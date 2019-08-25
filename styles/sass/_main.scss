@@ -1,6 +1,6 @@
 body {
     height: 100vh;
-    background: #eeebd3;
+    background: $backgroundColor;
 }
 
 h1,
@@ -14,12 +14,17 @@ h3 {
     padding-top: 5%;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
 // Container for Guesses Left
 .guessContainer {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    padding: 15px 15px;
+    width: 25%;
+    height: 80px;
+    margin: 15px;
+    padding: 15px;
 }
 
 .countZoom {
@@ -34,17 +39,42 @@ h3 {
     100% { transform: scale(1); }
 }
 
-// Play Again Button
-.playAgain {
-    padding: 15px 30px;
-    background: white;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: 3px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 5px black;
+// Hangman Title and Instructions
+.title {
+    width: 45%;
 }
+
+// Play Again Button
+.playAgainContainer {
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.playAgain {
+    height: 80px;
+    margin: 15px;
+    padding: 0px 30px;
+    background: $primaryColor;
+    border: 3px solid $secondaryColor;
+    border-radius: 10px;
+    box-shadow: 5px 5px $secondaryColor;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: all 0.3s;
+}
+
+.playAgain:hover,
+.playAgain:focus {
+    outline: 0;
+    top: 3px;
+    left: 3px;
+    box-shadow: 2px 2px $secondaryColor;
+    background: $primaryAccent;
+    color: $primaryColor;
+}
+
 
 // Letter tile section
 .guessWord {
@@ -56,11 +86,11 @@ h3 {
     .letterContainer {
         width: 100px;
         height: 150px;
-        margin: 20px;
-        background-color: white;
-        border: 3px solid black;
+        margin: 0 1.5% 1% 0;
+        background-color: $primaryColor;
+        border: 3px solid $secondaryColor;
         border-radius: 10px;
-        box-shadow: 5px 5px black;
+        box-shadow: 5px 5px $secondaryColor;
         text-align: center;
     }
 }
@@ -81,11 +111,14 @@ h3 {
 
 // Last guess message
 p {
+    margin-top: 0;
+    margin-bottom: 2%;
     visibility: hidden;
 }
 
 .pAnimate {
     visibility: visible;
+    // margin
     text-align: center;
     animation: pZoom 2.5s 1;
     z-index: 10;
@@ -110,11 +143,11 @@ p {
         left: 0;
         width: 40px;
         height: 40px;
-        margin: 10px;
-        background: white;
-        border: 3px solid black;
+        margin: 0.7%;
+        background: $primaryColor;
+        border: 3px solid $secondaryColor;
         border-radius: 10px;
-        box-shadow: 3px 3px black;
+        box-shadow: 3px 3px $secondaryColor;
         transition: all 0.3s;
     }
 
@@ -123,16 +156,16 @@ p {
         outline: 0;
         top: 2px;
         left: 2px;
-        box-shadow: 1px 1px black;
+        box-shadow: 1px 1px $secondaryColor;
         background: $primaryAccent;
     }
 
     .incorrect {
-        background: grey;
+        background: $buttonIncorrect;
     }
     
     .correct {
-        background: lightgreen;
+        background: $buttonCorrect;
     }
 
 }

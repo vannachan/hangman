@@ -251,16 +251,28 @@ p,
 .playAgain,
 .showLetter {
   font-family: "Francois One", sans-serif;
-  color: white;
-  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #fff;
+  text-shadow: 2px 2px 0 darkblue, -1px -1px 0 darkblue, 1px -1px 0 darkblue, -1px 1px 0 darkblue, 1px 1px 0 darkblue;
 }
 
 h1,
 h3 {
-  font-family: "Francois One", sans-serif;
+  -webkit-text-stroke: 1px darkblue;
+  text-shadow: 3px 3px 0 darkblue, -1px -1px 0 darkblue, 1px -1px 0 darkblue, -1px 1px 0 darkblue, 1px 1px 0 darkblue;
+}
+
+h1,
+.guessContainer,
+.playAgain,
+.guessLetter {
   text-transform: uppercase;
-  -webkit-text-stroke: 1px black;
-  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+p,
+.guessContainer,
+.playAgain,
+.guessLetter {
+  color: #f7c548;
 }
 
 h1 {
@@ -278,20 +290,19 @@ h3 {
 
 .guessContainer,
 .playAgain {
-  text-transform: uppercase;
   font-size: 4rem;
-  color: #f7c548;
 }
 
 .guessLetter {
-  text-transform: uppercase;
   font-size: 5rem;
-  color: #f7c548;
 }
 
 p {
   font-size: 3rem;
-  margin-top: 0;
+}
+
+.letterButton {
+  color: darkblue;
 }
 
 body {
@@ -310,11 +321,20 @@ h3 {
   padding-top: 5%;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 .guessContainer {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 15px 15px;
+  width: 25%;
+  height: 80px;
+  margin: 15px;
+  padding: 15px;
 }
 
 .countZoom {
@@ -361,16 +381,45 @@ h3 {
   }
 }
 
+.title {
+  width: 45%;
+}
+
+.playAgainContainer {
+  width: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .playAgain {
-  padding: 15px 30px;
-  background: white;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: 3px solid black;
+  height: 80px;
+  margin: 15px;
+  padding: 0px 30px;
+  background: #fff;
+  border: 3px solid darkblue;
   border-radius: 10px;
-  -webkit-box-shadow: 5px 5px black;
-          box-shadow: 5px 5px black;
+  -webkit-box-shadow: 5px 5px darkblue;
+          box-shadow: 5px 5px darkblue;
+  position: relative;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.playAgain:hover,
+.playAgain:focus {
+  outline: 0;
+  top: 3px;
+  left: 3px;
+  -webkit-box-shadow: 2px 2px darkblue;
+          box-shadow: 2px 2px darkblue;
+  background: #f7c548;
+  color: #fff;
 }
 
 .guessWord {
@@ -387,12 +436,12 @@ h3 {
 .guessWord .letterContainer {
   width: 100px;
   height: 150px;
-  margin: 20px;
-  background-color: white;
-  border: 3px solid black;
+  margin: 0 1.5% 1% 0;
+  background-color: #fff;
+  border: 3px solid darkblue;
   border-radius: 10px;
-  -webkit-box-shadow: 5px 5px black;
-          box-shadow: 5px 5px black;
+  -webkit-box-shadow: 5px 5px darkblue;
+          box-shadow: 5px 5px darkblue;
   text-align: center;
 }
 
@@ -410,6 +459,8 @@ h3 {
 }
 
 p {
+  margin-top: 0;
+  margin-bottom: 2%;
   visibility: hidden;
 }
 
@@ -482,12 +533,12 @@ p {
   left: 0;
   width: 40px;
   height: 40px;
-  margin: 10px;
-  background: white;
-  border: 3px solid black;
+  margin: 0.7%;
+  background: #fff;
+  border: 3px solid darkblue;
   border-radius: 10px;
-  -webkit-box-shadow: 3px 3px black;
-          box-shadow: 3px 3px black;
+  -webkit-box-shadow: 3px 3px darkblue;
+          box-shadow: 3px 3px darkblue;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -497,8 +548,8 @@ p {
   outline: 0;
   top: 2px;
   left: 2px;
-  -webkit-box-shadow: 1px 1px black;
-          box-shadow: 1px 1px black;
+  -webkit-box-shadow: 1px 1px darkblue;
+          box-shadow: 1px 1px darkblue;
   background: #f7c548;
 }
 

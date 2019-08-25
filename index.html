@@ -23,15 +23,22 @@
 <body>
 
     <!-- TODO: fix the navigation pane -->
-    <h1>Hangman</h1>
-    <h2>Pick a letter and guess the word!</h2>
+
+    <header>
+        <div class="guessContainer">
+            <span class="guessesLeft">Guesses left:</span>
+            <span class="guessCount"></span>
+        </div>
     
-    <div class="guessContainer">
-        <span class="guessesLeft">Guesses left:</span>
-        <span class="guessCount"></span>
-    </div>
-    
-    <button class="playAgain">Play again</button>
+        <div class="title">
+            <h1>Hangman</h1>
+            <h2>Pick a letter and guess the word!</h2>
+        </div>
+        
+        <div class="playAgainContainer">
+            <button class="playAgain">Play again</button>
+        </div>
+    </header>
 
     <!-- Dynamically generated content via Javascript -->
     <section class="guessWord">
