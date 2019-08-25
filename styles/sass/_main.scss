@@ -1,6 +1,19 @@
 body {
     height: 100vh;
     background: $backgroundColor;
+    cursor: url('../assets/derp.png'), auto;
+    
+    &.crying {
+        cursor: url('../assets/crying.png'), auto;
+    }
+
+    &.happy {
+        cursor: url('../assets/happy.png'), auto;
+    }
+
+    &.dead {
+        cursor: url('../assets/dead.png'), auto;
+    }
 }
 
 h1,
@@ -10,7 +23,7 @@ h3 {
     margin: 0 auto;
 }
 
-.addPadding {
+.h3AddPadding {
     padding-top: 5%;
 }
 

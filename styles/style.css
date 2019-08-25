@@ -308,6 +308,19 @@ p {
 body {
   height: 100vh;
   background: #eeebd3;
+  cursor: url("../assets/derp.png"), auto;
+}
+
+body.crying {
+  cursor: url("../assets/crying.png"), auto;
+}
+
+body.happy {
+  cursor: url("../assets/happy.png"), auto;
+}
+
+body.dead {
+  cursor: url("../assets/dead.png"), auto;
 }
 
 h1,
@@ -317,7 +330,7 @@ h3 {
   margin: 0 auto;
 }
 
-.addPadding {
+.h3AddPadding {
   padding-top: 5%;
 }
 
