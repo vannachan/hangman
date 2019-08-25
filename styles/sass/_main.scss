@@ -92,21 +92,11 @@ p {
 }
 
 @keyframes pZoom {
-    0% { 
-        transform: scale(1); 
-    } 25% { 
-        transform: scale(0.5);
-        // transform: rotate(-10deg); 
-    } 50% { 
-        transform: scale(2); 
-        // transform: rotate(10deg);
-    } 75% {
-        transform: scale(0.5); 
-        // transform: rotate(-10deg);
-    } 100% { 
-        transform: scale(1); 
-        // transform: rotate(0deg);
-    }
+    0% { transform: scale(1); } 
+    25% { transform: scale(0.5); } 
+    50% { transform: scale(2); } 
+    80% {transform: scale(0.5); } 
+    100% { transform: scale(1); }
 }
 
 // Keyboard Section

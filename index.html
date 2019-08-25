@@ -38,10 +38,11 @@
     </section>
     <h3></h3>
     <p></p>
+    
     <!-- Qwerty Format -->
     <div class="keyboard rowOne">
         <button class="q letterButton" value="q">Q</button>
-        <button class="w letterButton" value="W">W</button>
+        <button class="w letterButton" value="w">W</button>
         <button class="e letterButton" value="e">E</button>
         <button class="r letterButton" value="r">R</button>
         <button class="t letterButton" value="t">T</button>
@@ -81,7 +82,7 @@
         // Initializing the hangMan object
         const hangMan = {};
         // TODO: populate more words or look into API to generate words.
-        hangMan.wordArray = ['receipt', 'sunscreen', 'basketball', 'violin', 'toronto', 'hackeryou', 'lightbulb', 'iceskating', 'keyboard'];
+        hangMan.wordArray = ['daniel', 'lion', 'prayer', 'darius', 'babylon', 'law'];
         hangMan.charArray = [];
         hangMan.guessCnt = 10;
         hangMan.totalLetterCorrect = 0;
@@ -138,8 +139,11 @@
         hangMan.winGame = function() {
             $('h3').text("YOU WIN!!!");
             $('h3').addClass('addPadding');
-            // User already won, so disable guessing capabilities
+
+            // Hiding things
             $('.keyboard').addClass('hideKeyboard');
+            $('p').html('');
+            $('p').removeClass('pAnimate');
             
             hangMan.resetCounters();
         };
@@ -151,11 +155,15 @@
         // ==                  the next game!                               == //
         // =================================================================== //
         hangMan.loseGame = function() {
-            $('span.guessLetter').removeClass('hideLetter');
-            $('span.guessLetter').addClass('showLetter');
-            $('.keyboard').addClass('hideKeyboard');
             $('h3').text("YOU LOSEEEeeEEeEEE!!!");
             $('h3').addClass('addPadding');
+
+            // Reveal the word
+            $('span.guessLetter').removeClass('hideLetter');
+            $('span.guessLetter').addClass('showLetter');
+
+            // Hiding things
+            $('.keyboard').addClass('hideKeyboard');
             $('p').html('');
             $('p').removeClass('pAnimate');
 
@@ -203,6 +211,7 @@
 
                 // Save the letter and disable the button
                 const selectedValue = $(this).attr('value');
+                console.log(selectedValue);
                 $(this).attr('disabled', 'disabled');
             
                 // OKAY, WE GOT GUESSES LEFT, PROCEED!
@@ -222,8 +231,6 @@
                         if (hangMan.guessCnt === 1) {
                             $('p').remove();
                             $('h3').after(`<p class="pAnimate">Uh oh, looks like you only have 1 guess left!</p>`);
-                            // $('p').text(`Uh oh, looks like you only have 1 guess left!`);
-                            // $('p').addClass('pAnimate');
                         }
 
                     } else {
