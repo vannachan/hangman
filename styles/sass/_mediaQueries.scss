@@ -141,6 +141,7 @@
 
     .guessLetter {
         font-size: 4rem;
+        line-height: 10rem;
     }
 
     .h3AddPadding {
@@ -241,6 +242,7 @@
 
     .guessLetter {
         font-size: 3.4rem;
+        line-height: 8rem;
     }
 
     .keyboard {
@@ -254,6 +256,11 @@
 } // end of 460px
 
 @media (max-width: 420px) {
+    .guessLetter {
+        font-size: 3rem;
+        line-height: 7rem;
+    }
+
     .keyboard {
         button {
             font-size: 1.2rem;

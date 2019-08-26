@@ -799,6 +799,7 @@ footer p {
   }
   .guessLetter {
     font-size: 4rem;
+    line-height: 10rem;
   }
   .h3AddPadding {
     padding-top: 15%;
@@ -887,6 +888,7 @@ footer p {
   }
   .guessLetter {
     font-size: 3.4rem;
+    line-height: 8rem;
   }
   .keyboard button {
     font-size: 1.3rem;
@@ -896,6 +898,10 @@ footer p {
 }
 
 @media (max-width: 420px) {
+  .guessLetter {
+    font-size: 3rem;
+    line-height: 7rem;
+  }
   .keyboard button {
     font-size: 1.2rem;
     width: 32px;

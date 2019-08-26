@@ -1,8 +1,8 @@
 // Initializing the hangMan object
 const hangMan = {};
 
-// TODO: populate more words or look into API to generate words.
-hangMan.wordArray = ['daniel', 'lion', 'prayer', 'darius', 'babylon', 'law'];
+// TODO: Find a word API in the future to populate this array instead
+hangMan.wordArray = ['college', 'juno', 'hackeryou', 'html', 'react', 'bootcamp', 'webdev', 'notebook', 'firebase', 'design', 'vscode', 'prettier', 'bubbletea', 'coder', 'function', 'variable', 'array', 'flexbox', 'float', 'margin', 'padding', 'create', 'program'];
 hangMan.charArray = [];
 hangMan.guessCnt = 10;
 hangMan.totalLetterCorrect = 0;
@@ -14,7 +14,6 @@ hangMan.totalLetterCorrect = 0;
 // ==                and populate dynamic DIVs on page.             == //
 // =================================================================== //
 hangMan.init = function() {
-    console.log("WE IN THE INIT FUNCTION");
     hangMan.setup();
     hangMan.playGame();
     hangMan.playAgain();
@@ -48,7 +47,7 @@ hangMan.setup = function() {
 // ==   Description: Reset counters for a fresh game.               == //
 // =================================================================== //
 hangMan.resetCounters = function() {
-    hangMan.guessCnt = 2;
+    hangMan.guessCnt = 10;
     hangMan.totalLetterCorrect = 0;
 };
 
@@ -83,7 +82,7 @@ hangMan.loseGame = function() {
     $('body').removeClass('crying');
     $('body').addClass('dead');
 
-    $('h3').text("YOU LOSEEEeeEEeEEE!!!");
+    $('h3').text("YOU LOSEEeeEeEE!!");
     $('h3').addClass('h3AddPadding');
 
     // Reveal the word
@@ -139,7 +138,6 @@ hangMan.playGame = function() {
 
         // Save the letter and disable the button
         const selectedValue = $(this).attr('value');
-        console.log(selectedValue);
         $(this).attr('disabled', 'disabled');
     
         // OKAY, WE GOT GUESSES LEFT, PROCEED!
@@ -154,7 +152,6 @@ hangMan.playGame = function() {
                 
                 $('span.guessCount').text(hangMan.guessCnt);
                 $('span.guessCount').addClass('countZoom');
-                console.log(`Guesses left: ${hangMan.guessCnt}`);
 
                 if (hangMan.guessCnt === 1) {
                     $('body').addClass('crying');

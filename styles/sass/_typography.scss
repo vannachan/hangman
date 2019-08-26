@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    font-size: 1.6rem;
+    font-size: 1.6rem; // 16px is the minimum
     font-family: $baseFont;
 }
 
@@ -52,7 +52,6 @@ button,
 footer {
     text-align: center;
 }
-
 
 .guessContainer,
 .playAgain,
