@@ -37,8 +37,9 @@ hangMan.setup = function() {
 
     hangMan.resetCounters();
     $('span.guessCount').text(hangMan.guessCnt);
-    $('p').html('placeholder');
+    $('.lastGuess').html('placeholder');
     $('body').removeClass('happy dead');
+    // hangMan.loseGame();
 };
 
 // =================================================================== //
@@ -47,7 +48,7 @@ hangMan.setup = function() {
 // ==   Description: Reset counters for a fresh game.               == //
 // =================================================================== //
 hangMan.resetCounters = function() {
-    hangMan.guessCnt = 10;
+    hangMan.guessCnt = 2;
     hangMan.totalLetterCorrect = 0;
 };
 
@@ -66,8 +67,8 @@ hangMan.winGame = function() {
 
     // Hiding things
     $('.keyboard').addClass('hideKeyboard');
-    $('p').html('');
-    $('p').removeClass('pAnimate');
+    $('.lastGuess').html('');
+    $('.lastGuess').removeClass('pAnimate');
     
     hangMan.resetCounters();
 };
@@ -91,8 +92,8 @@ hangMan.loseGame = function() {
 
     // Hiding things
     $('.keyboard').addClass('hideKeyboard');
-    $('p').html('');
-    $('p').removeClass('pAnimate');
+    $('.lastGuess').html('');
+    $('.lastGuess').removeClass('pAnimate');
 
     hangMan.resetCounters();
 };
@@ -158,8 +159,8 @@ hangMan.playGame = function() {
                 if (hangMan.guessCnt === 1) {
                     $('body').addClass('crying');
 
-                    $('p').remove();
-                    $('h3').after(`<p class="pAnimate">Uh oh, looks like you only have 1 guess left!</p>`);
+                    $('.lastGuess').remove();
+                    $('h3').after(`<p class="lastGuess pAnimate">Uh oh, looks like you only have 1 guess left!</p>`);
                 }
 
             } else {
@@ -192,7 +193,7 @@ hangMan.playAgain = function() {
         $('.keyboard').removeClass('hideKeyboard');
         $('h3').html('');
         $('h3').removeClass('h3AddPadding');
-        $('p').html('');
+        $('.lastGuess').html('');
 
         // Now repopulate and set it up as a new game
         hangMan.setup();

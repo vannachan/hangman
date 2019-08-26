@@ -241,15 +241,16 @@ html {
 
 body {
   font-size: 1.6rem;
+  font-family: "Raleway", sans-serif;
 }
 
 h1,
 h2,
 h3,
-p,
 .guessContainer,
 .playAgain,
-.showLetter {
+.showLetter,
+.lastGuess {
   font-family: "Francois One", sans-serif;
   color: #fff;
   text-shadow: 2px 2px 0 darkblue, -1px -1px 0 darkblue, 1px -1px 0 darkblue, -1px 1px 0 darkblue, 1px 1px 0 darkblue;
@@ -268,36 +269,49 @@ h1,
   text-transform: uppercase;
 }
 
-p,
+h1,
+h2,
+h3,
+.letterContainer,
+.pAnimate,
+.showLetter,
+button,
+footer {
+  text-align: center;
+}
+
 .guessContainer,
 .playAgain,
-.guessLetter {
+.guessLetter,
+.lastGuess,
+h3 {
   color: #f7c548;
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: 9.5rem;
 }
 
-h2 {
-  font-size: 4rem;
+h2,
+.guessContainer,
+.playAgain {
+  font-size: 3.6rem;
   letter-spacing: 2px;
+}
+
+i {
+  font-size: 3.2rem;
 }
 
 h3 {
   font-size: 8rem;
 }
 
-.guessContainer,
-.playAgain {
-  font-size: 4rem;
-}
-
 .guessLetter {
   font-size: 5rem;
 }
 
-p {
+.lastGuess {
   font-size: 3rem;
 }
 
@@ -305,9 +319,25 @@ p {
   color: darkblue;
 }
 
+footer {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: darkblue;
+}
+
 body {
   height: 100vh;
   background: #eeebd3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   cursor: url("../assets/derp.png"), auto;
 }
 
@@ -323,18 +353,14 @@ body.dead {
   cursor: url("../assets/dead.png"), auto;
 }
 
-h1,
-h2,
-h3 {
-  text-align: center;
+.wrapper {
+  width: 100vw;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
-.h3AddPadding {
-  padding-top: 5%;
-}
-
 header {
+  height: 25vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -343,15 +369,31 @@ header {
           justify-content: space-between;
 }
 
+h1,
+h2,
+h3 {
+  margin: 0 auto;
+}
+
+.h3AddPadding {
+  padding-top: 5%;
+}
+
 .guessContainer {
   width: 25%;
   height: 80px;
   margin: 15px;
   padding: 15px;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.guessCount {
+  display: inline-block;
+  padding-left: 10px;
 }
 
 .countZoom {
-  display: inline-block;
   -webkit-animation: zoom 1.5s 1;
           animation: zoom 1.5s 1;
 }
@@ -395,7 +437,7 @@ header {
 }
 
 .title {
-  width: 45%;
+  width: 48%;
 }
 
 .playAgainContainer {
@@ -408,9 +450,13 @@ header {
           justify-content: flex-end;
 }
 
+.replayIcon {
+  display: none;
+}
+
 .playAgain {
   height: 80px;
-  margin: 15px;
+  margin: 15px 15px 15px 0;
   padding: 0px 30px;
   background: #fff;
   border: 3px solid darkblue;
@@ -435,6 +481,10 @@ header {
   color: #fff;
 }
 
+.mainInfo {
+  height: 45vh;
+}
+
 .guessWord {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -447,19 +497,17 @@ header {
 }
 
 .guessWord .letterContainer {
-  width: 100px;
-  height: 150px;
+  width: 8%;
   margin: 0 1.5% 1% 0;
   background-color: #fff;
   border: 3px solid darkblue;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px darkblue;
           box-shadow: 5px 5px darkblue;
-  text-align: center;
 }
 
 .guessLetter {
-  line-height: 150px;
+  line-height: 14rem;
 }
 
 .hideLetter {
@@ -468,10 +516,9 @@ header {
 
 .showLetter {
   visibility: visible;
-  text-align: center;
 }
 
-p {
+.lastGuess {
   margin-top: 0;
   margin-bottom: 2%;
   visibility: hidden;
@@ -479,7 +526,6 @@ p {
 
 .pAnimate {
   visibility: visible;
-  text-align: center;
   -webkit-animation: pZoom 2.5s 1;
           animation: pZoom 2.5s 1;
   z-index: 10;
@@ -531,6 +577,10 @@ p {
   }
 }
 
+.keyboardInput {
+  height: 26vh;
+}
+
 .keyboard {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -547,6 +597,7 @@ p {
   width: 40px;
   height: 40px;
   margin: 0.7%;
+  padding: 0;
   background: #fff;
   border: 3px solid darkblue;
   border-radius: 10px;
@@ -576,4 +627,273 @@ p {
 
 .hideKeyboard {
   display: none;
+}
+
+footer {
+  background: #eeebd3;
+  height: 4vh;
+  line-height: 4vh;
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 1284px) {
+  h2,
+  .guessContainer,
+  .playAgain {
+    font-size: 3.0rem;
+  }
+  .playAgain {
+    padding: 0px 23px;
+  }
+  i {
+    font-size: 2.7rem;
+  }
+}
+
+@media (max-width: 1110px) {
+  h1 {
+    font-size: 8.5rem;
+  }
+  h2,
+  .guessContainer,
+  .playAgain {
+    font-size: 2.7rem;
+  }
+  i {
+    font-size: 2.5rem;
+  }
+  .guessCount {
+    padding-left: 0;
+  }
+  @-webkit-keyframes zoom {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    33% {
+      -webkit-transform: scale(1.8);
+              transform: scale(1.8);
+    }
+    66% {
+      -webkit-transform: scale(0.8);
+              transform: scale(0.8);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  @keyframes zoom {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    33% {
+      -webkit-transform: scale(1.8);
+              transform: scale(1.8);
+    }
+    66% {
+      -webkit-transform: scale(0.8);
+              transform: scale(0.8);
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+  }
+  .playAgain {
+    height: 70px;
+    padding: 0px 18px;
+  }
+}
+
+@media (max-width: 984px) {
+  h1 {
+    font-size: 7.5rem;
+  }
+  h2,
+  .guessContainer,
+  .playAgain {
+    font-size: 2.3rem;
+  }
+  button.playAgain:not(.replayIcon) {
+    display: none;
+  }
+  .replayIcon {
+    display: inline-block;
+    height: 60px;
+    padding: 0px 15px;
+  }
+  h3 {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 872px) {
+  header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .title {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 90%;
+    padding-left: 15px;
+  }
+  h1,
+  h2 {
+    text-align: left;
+  }
+  .playAgainContainer {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    width: 10%;
+  }
+  i {
+    font-size: 3rem;
+  }
+  .replayIcon {
+    height: 65px;
+    padding: 0px 15px;
+  }
+  .guessContainer {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+    font-size: 2.6rem;
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+    margin-left: 0;
+  }
+  .guessCount {
+    padding-left: 10px;
+  }
+  .lastGuess {
+    margin-top: 3%;
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  i {
+    font-size: 3rem;
+  }
+  .replayIcon {
+    height: 65px;
+    padding: 0px 15px;
+  }
+}
+
+@media (max-width: 510px) {
+  h1 {
+    font-size: 6.5rem;
+    padding-top: 2%;
+  }
+  h2 {
+    padding-top: 1%;
+  }
+  i {
+    font-size: 2.7rem;
+  }
+  .replayIcon {
+    height: 60px;
+    padding: 0px 15px;
+  }
+  .guessContainer,
+  .playAgain {
+    font-size: 2.0rem;
+  }
+  .guessContainer {
+    padding-top: 7px;
+  }
+  .keyboard button {
+    width: 35px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 460px) {
+  main {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .title {
+    width: 100%;
+  }
+  h1 {
+    font-size: 5.2rem;
+  }
+  h2 {
+    font-size: 2.0rem;
+    padding-top: 2%;
+  }
+  .playAgainContainer {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  i {
+    font-size: 2rem;
+  }
+  .replayIcon {
+    height: 40px;
+    padding: 0px 7px;
+  }
+  .keyboard button {
+    font-size: 1.3rem;
+    width: 35px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 420px) {
+  .keyboard button {
+    font-size: 1.2rem;
+    width: 32px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .keyboard button {
+    width: 30px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 373px) {
+  h1 {
+    font-size: 4.7rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  .guessContainer,
+  .playAgain {
+    font-size: 1.8rem;
+  }
+  .lastGuess {
+    font-size: 2.2rem;
+  }
+  .keyboard button {
+    width: 27px;
+    height: 40px;
+  }
 }

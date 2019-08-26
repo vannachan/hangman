@@ -1,0 +1,264 @@
+@media (max-width: 1284px) {
+    h2,
+    .guessContainer,
+    .playAgain {
+        font-size: 3.0rem;
+    }
+
+    .playAgain {
+        padding: 0px 23px;
+    }
+
+    i {
+        font-size: 2.7rem;
+    }
+} // end of 1284px
+
+@media (max-width: 1110px) {
+    h1 {
+        font-size: 8.5rem;
+    }
+
+    h2,
+    .guessContainer,
+    .playAgain {
+        font-size: 2.7rem;
+    }
+
+    i {
+        font-size: 2.5rem;
+    }
+
+    .guessCount {
+        padding-left: 0;
+    }
+
+    @keyframes zoom {
+        0% { transform: scale(1); }
+        33% { transform: scale(1.8); }
+        66% { transform: scale(0.8); }
+        100% { transform: scale(1); }
+    }
+
+    .playAgain {
+        height: 70px;
+        padding: 0px 18px;
+    }
+} // end of 1110px
+
+@media (max-width: 984px) {
+    h1 {
+        font-size: 7.5rem;
+    }
+
+    h2,
+    .guessContainer,
+    .playAgain {
+        font-size: 2.3rem;
+    }
+
+    button.playAgain:not(.replayIcon) {
+        display: none;
+    }
+
+    .replayIcon {
+        display: inline-block;
+        height: 60px;
+        padding: 0px 15px;
+    }
+
+    h3 {
+        font-size: 6rem;
+    }
+} // end of 984px
+
+@media (max-width: 872px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .title {
+        order: 1;
+        width: 90%;
+        padding-left: 15px;
+    }
+    
+    h1,
+    h2 {
+        text-align: left;
+    }
+
+    .playAgainContainer {
+        order: 2;
+        width: 10%;
+    }
+
+    i {
+        font-size: 3rem;
+    }
+
+    .replayIcon {
+        height: 65px;
+        padding: 0px 15px;
+    }
+
+    .guessContainer {
+        order: 3;
+        font-size: 2.6rem;
+        width: 100%;
+        height: auto;
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    .guessCount {
+        padding-left: 10px;
+    }
+
+    .lastGuess {
+        margin-top: 3%;
+        font-size: 2.5rem;
+    }
+} // end of 872px
+
+@media (max-width: 550px) {
+    i {
+        font-size: 3rem;
+    }
+
+    .replayIcon {
+        height: 65px;
+        padding: 0px 15px;
+    }
+
+} // end of 550px
+
+@media (max-width: 510px) {
+    h1 {
+        font-size: 6.5rem;
+        padding-top: 2%;
+    }
+
+    h2 {
+        padding-top: 1%;
+    }
+
+    i {
+        font-size: 2.7rem;
+    }
+
+    .replayIcon {
+        height: 60px;
+        padding: 0px 15px;
+    }
+
+    .guessContainer,
+    .playAgain {
+        font-size: 2.0rem;
+    }
+
+    .guessContainer {
+        padding-top: 7px;
+    }
+
+    .keyboard {
+        button {
+            width: 35px;
+            height: 40px;
+        }
+    }
+
+} // end of 510px
+
+@media (max-width: 460px) {
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .title {
+        width: 100%;
+    }
+    
+    h1 {
+        font-size: 5.2rem;
+    }
+
+    h2 {
+        font-size: 2.0rem;
+        padding-top: 2%;
+    }
+
+    .playAgainContainer {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    i {
+        font-size: 2rem;
+    }
+
+    .replayIcon {
+        height: 40px;
+        padding: 0px 7px;
+    }
+
+    .keyboard {
+        button {
+            font-size: 1.3rem;
+            width: 35px;
+            height: 40px;
+        }
+    }
+
+} // end of 460px
+
+@media (max-width: 420px) {
+    .keyboard {
+        button {
+            font-size: 1.2rem;
+            width: 32px;
+            height: 40px;
+        }
+    }
+} // end of 420px
+
+@media (max-width: 400px) {
+    .keyboard {
+        button {
+            width: 30px;
+            height: 40px;
+        }
+    }
+} // end of 400px
+
+@media (max-width: 373px) {
+    h1 {
+        font-size: 4.7rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .guessContainer,
+    .playAgain {
+        font-size: 1.8rem;
+    }
+
+    .lastGuess {
+        font-size: 2.2rem;
+    }
+
+    .keyboard {
+        button {
+            width: 27px;
+            height: 40px;
+        }
+    }
+
+} // end of 373px
+

@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- Link to Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Francois+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Francois+One|Raleway:700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
     <!-- Link to CSS styles -->
     <link rel="stylesheet" href="./styles/style.css">
@@ -14,63 +17,79 @@
     <title>Hangman</title>
 </head>
 <body>
-    <header>
-        <div class="guessContainer">
-            <span class="guessesLeft">Guesses left:</span>
-            <span class="guessCount"></span>
-        </div>
-    
-        <div class="title">
-            <h1>Hangman</h1>
-            <h2>Pick a letter and guess the word!</h2>
-        </div>
+
+    <main class="wrapper">
+        <header class="banner">
+            <div class="guessContainer">
+                <span class="guessesLeft">Guesses left: </span>
+                <span class="guessCount"></span>
+            </div>
         
-        <div class="playAgainContainer">
-            <button class="playAgain">Play again</button>
-        </div>
-    </header>
-
-    <!-- Dynamically generated content via Javascript -->
-    <section class="guessWord">
-    </section>
-    <h3></h3>
-    <p></p>
+            <div class="title">
+                <h1>Hangman</h1>
+                <h2>Pick a letter and guess the word!</h2>
+            </div>
+            
+            <div class="playAgainContainer">
+                <button class="playAgain replayIcon" aria-label="Play again!">
+                    <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                </button>
+                <button class="playAgain">
+                    Play again <i class="fas fa-sync-alt" aria-hidden="true"></i>
+                </button>
+            </div>
+        </header>
     
-    <!-- Qwerty Format -->
-    <div class="keyboard rowOne">
-        <button class="q letterButton" value="q">Q</button>
-        <button class="w letterButton" value="w">W</button>
-        <button class="e letterButton" value="e">E</button>
-        <button class="r letterButton" value="r">R</button>
-        <button class="t letterButton" value="t">T</button>
-        <button class="y letterButton" value="y">Y</button>
-        <button class="u letterButton" value="u">U</button>
-        <button class="i letterButton" value="i">I</button>
-        <button class="o letterButton" value="o">O</button>
-        <button class="p letterButton" value="p">P</button>
-    </div>
+        <!-- Dynamically generated content via Javascript -->
+        <section class="mainInfo">
+            <section class="guessWord">
+            </section>
+            <h3></h3>
+            <p class="lastGuess"></p>
+        </section>
 
-    <div class="keyboard rowTwo">
-        <button class="a letterButton" value="a">A</button>
-        <button class="s letterButton" value="s">S</button>
-        <button class="d letterButton" value="d">D</button>
-        <button class="f letterButton" value="f">F</button>
-        <button class="g letterButton" value="g">G</button>
-        <button class="h letterButton" value="h">H</button>
-        <button class="j letterButton" value="j">J</button>
-        <button class="k letterButton" value="k">K</button>
-        <button class="l letterButton" value="l">L</button>
-    </div>
+        <section class="keyboardInput">
+            <!-- Qwerty Format -->
+            <div class="keyboard rowOne">
+                <button class="q letterButton" value="q">Q</button>
+                <button class="w letterButton" value="w">W</button>
+                <button class="e letterButton" value="e">E</button>
+                <button class="r letterButton" value="r">R</button>
+                <button class="t letterButton" value="t">T</button>
+                <button class="y letterButton" value="y">Y</button>
+                <button class="u letterButton" value="u">U</button>
+                <button class="i letterButton" value="i">I</button>
+                <button class="o letterButton" value="o">O</button>
+                <button class="p letterButton" value="p">P</button>
+            </div>
+        
+            <div class="keyboard rowTwo">
+                <button class="a letterButton" value="a">A</button>
+                <button class="s letterButton" value="s">S</button>
+                <button class="d letterButton" value="d">D</button>
+                <button class="f letterButton" value="f">F</button>
+                <button class="g letterButton" value="g">G</button>
+                <button class="h letterButton" value="h">H</button>
+                <button class="j letterButton" value="j">J</button>
+                <button class="k letterButton" value="k">K</button>
+                <button class="l letterButton" value="l">L</button>
+            </div>
+        
+            <div class="keyboard rowThree">
+                <button class="z letterButton" value="z">Z</button>
+                <button class="x letterButton" value="x">X</button>
+                <button class="c letterButton" value="c">C</button>
+                <button class="v letterButton" value="v">V</button>
+                <button class="b letterButton" value="b">B</button>
+                <button class="n letterButton" value="n">N</button>
+                <button class="m letterButton" value="m">M</button>
+            </div>
+        </section>
+    </main>
 
-    <div class="keyboard rowThree">
-        <button class="z letterButton" value="z">Z</button>
-        <button class="x letterButton" value="x">X</button>
-        <button class="c letterButton" value="c">C</button>
-        <button class="v letterButton" value="v">V</button>
-        <button class="b letterButton" value="b">B</button>
-        <button class="n letterButton" value="n">N</button>
-        <button class="m letterButton" value="m">M</button>
-    </div>
+    <footer class="wrapper">
+        <p>Copyright &#169 2019 Vanna Chan</p>
+    </footer>
 
 
     <!-- JAVA LANDDDD -->

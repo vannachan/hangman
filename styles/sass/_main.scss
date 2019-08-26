@@ -1,6 +1,9 @@
 body {
     height: 100vh;
     background: $backgroundColor;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: url('../assets/derp.png'), auto;
     
     &.crying {
@@ -16,10 +19,24 @@ body {
     }
 }
 
+.wrapper {
+    width: 100vw;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+// ==================== //
+// == HEADER SECTION == //
+// ==================== //
+header {
+    height: 25vh;
+    display: flex;
+    justify-content: space-between;
+}
+
 h1,
 h2,
 h3 {
-    text-align: center;
     margin: 0 auto;
 }
 
@@ -27,21 +44,22 @@ h3 {
     padding-top: 5%;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-}
-
-// Container for Guesses Left
+// GUESSES LEFT
 .guessContainer {
     width: 25%;
     height: 80px;
     margin: 15px;
     padding: 15px;
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.guessCount {
+    display: inline-block;
+    padding-left: 10px;
 }
 
 .countZoom {
-    display: inline-block;
     animation: zoom 1.5s 1;
 }
 
@@ -52,21 +70,25 @@ header {
     100% { transform: scale(1); }
 }
 
-// Hangman Title and Instructions
+// MAIN TITLE
 .title {
-    width: 45%;
+    width: 48%;
 }
 
-// Play Again Button
+// PLAY AGAIN BUTTON
 .playAgainContainer {
     width: 25%;
     display: flex;
     justify-content: flex-end;
 }
 
+.replayIcon {
+    display: none;
+}
+
 .playAgain {
     height: 80px;
-    margin: 15px;
+    margin: 15px 15px 15px 0;
     padding: 0px 30px;
     background: $primaryColor;
     border: 3px solid $secondaryColor;
@@ -89,7 +111,14 @@ header {
 }
 
 
-// Letter tile section
+// ======================= //
+// == MAIN INFO SECTION == //
+// ======================= //
+.mainInfo {
+    height: 45vh;
+}
+
+// TILE SECTION
 .guessWord {
     display: flex;
     justify-content: center;
@@ -97,20 +126,18 @@ header {
     margin: 0 auto;
 
     .letterContainer {
-        width: 100px;
-        height: 150px;
+        width: 8%;
         margin: 0 1.5% 1% 0;
         background-color: $primaryColor;
         border: 3px solid $secondaryColor;
         border-radius: 10px;
         box-shadow: 5px 5px $secondaryColor;
-        text-align: center;
     }
 }
 
-// Each Letter INSIDE the tile
+// LETTER INSIDE THE TILES
 .guessLetter {
-    line-height: 150px;
+    line-height: 14rem;
 }
 
 .hideLetter {
@@ -119,11 +146,10 @@ header {
 
 .showLetter {
     visibility: visible;
-    text-align: center;
 }
 
-// Last guess message
-p {
+// UH OH MESSAGE
+.lastGuess {
     margin-top: 0;
     margin-bottom: 2%;
     visibility: hidden;
@@ -131,8 +157,6 @@ p {
 
 .pAnimate {
     visibility: visible;
-    // margin
-    text-align: center;
     animation: pZoom 2.5s 1;
     z-index: 10;
 }
@@ -145,7 +169,14 @@ p {
     100% { transform: scale(1); }
 }
 
-// Keyboard Section
+
+// ====================== //
+// == KEYBOARD SECTION == //
+// ====================== //
+.keyboardInput {
+    height: 26vh;
+}
+
 .keyboard {
     display: flex;
     justify-content: center;
@@ -157,6 +188,7 @@ p {
         width: 40px;
         height: 40px;
         margin: 0.7%;
+        padding: 0;
         background: $primaryColor;
         border: 3px solid $secondaryColor;
         border-radius: 10px;
@@ -185,4 +217,18 @@ p {
 
 .hideKeyboard {
     display: none;
+}
+
+
+// ============ //
+// == FOOTER == //
+// ============ //
+footer {
+    background: $backgroundColor;
+    height: 4vh;
+    line-height: 4vh;
+
+    p {
+        margin: 0;
+    }
 }
